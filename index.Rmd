@@ -13,22 +13,24 @@ library(plotly)
 ```
 
 # Executive Summary
-In this document, R's graphing library plotly is explored. The iris data set is used. 
+In this document, R's graphing library plotly is explored. The mtcars data set is used. 
 
-# Data set - iris
+# Data set - mtcars
 ```{r message=FALSE, warning=FALSE}
 
-if(!require(iris))
-  install.packages("iris",repos='http://cran.us.r-project.org')
+if(!require(mtcars))
+  install.packages("mtcars",repos='http://cran.us.r-project.org')
+
+head(mtcars)
 
 ```
 
 # Create a plot using plotly
-In this section, we will use plot_ly to graph sepal length against petal length. The color scheme is based on the flower species
+In this section, we will use plot_ly to graph the weight of vehicles against the mpg. The color scheme is based on the number of cylinders.
 
 ```{r message=FALSE, warning=FALSE}
 
-plot_ly(data=iris,x=iris$Sepal.Length,y=iris$Petal.Length,mode="markers",color=iris$Species) %>%
-layout(title="Mapping Sepal Length vs Petal Length",xaxis=list(title="Sepal Length"),yaxis=list(title="Petal Length"))
+plot_ly(data=mtcars,x=mtcars$wt,y=mtcars$mpg,mode="markers",color=as.factor(mtcars$cyl)) %>%
+layout(title="Mapping the weight of cars against miles per gallon",xaxis=list(title="Weight (1000 lbs)"),yaxis=list(title="mpg (miles/gallon)"))
 
 ```
